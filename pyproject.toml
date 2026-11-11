@@ -1,0 +1,27 @@
+[project]
+name = "kaggle-llm-preference"
+version = "0.1.0"
+description = "Previsão de preferência humana entre respostas de LLMs (Kaggle: LLM Classification Finetuning)"
+requires-python = ">=3.10"
+dependencies = ["pandas>=2", "numpy>=1.26", "scikit-learn>=1.4", "lightgbm>=4.3"]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lp"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ["notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
