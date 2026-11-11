@@ -21,17 +21,17 @@ print(path, len(test), "linhas")
 
 def module_source(name: str) -> str:
     src = (ROOT / "src" / "lp" / f"{name}.py").read_text(encoding="utf-8")
-    src = re.sub(r"^from lp\\.\\S+ import .*\\n", "", src, flags=re.MULTILINE)
-    src = re.sub(r"^from __future__ import annotations\\n", "", src, flags=re.MULTILINE)
-    return f"# ---- lp/{name}.py ----\\n" + src
+    src = re.sub(r"^from lp\.\S+ import .*\n", "", src, flags=re.MULTILINE)
+    src = re.sub(r"^from __future__ import annotations\n", "", src, flags=re.MULTILINE)
+    return f"# ---- lp/{name}.py ----\n" + src
 
 
 def build() -> dict:
     def code(s):
         return {"cell_type": "code", "metadata": {}, "execution_count": None, "outputs": [],
-                "source": s.strip("\\n").splitlines(True)}
+                "source": s.strip("\n").splitlines(True)}
 
-    intro = ("# Chatbot Arena: features de forma + LightGBM com troca A/B\\n\\n"
+    intro = ("# Chatbot Arena: features de forma + LightGBM com troca A/B\n\n"
              "Gerado por `scripts/build_kaggle_notebook.py` a partir de "
              "[kaggle-llm-preference](https://github.com/pedrohbenetton/kaggle-llm-preference). "
              "CV agrupada por prompt: log loss 1,029.")
